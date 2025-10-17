@@ -1,6 +1,5 @@
-// API Configuration
-const API_KEY = 'e7b6d06a53ea798e647e3a203eaef0a7';
-const BASE_URL = 'https://api.openweathermap.org/data/2.5';
+// Server Configuration
+const SERVER_URL = 'http://localhost:3000/api';
 
 // DOM Elements
 const cityInput = document.getElementById('city-input');
@@ -14,11 +13,11 @@ const errorMessage = document.getElementById('error-message');
 const debugInfo = document.getElementById('debug-info');
 
 // State
-let currentUnit = 'metric'; // 'metric' for Celsius, 'imperial' for Fahrenheit
+let currentUnit = 'metric';
 let searchHistory = JSON.parse(localStorage.getItem('weatherSearchHistory')) || [];
 
 // Initialize the app
-document.addEventListener('DOMContentLoaded', () => {
+document.addEventListener('DOMContentLoaded', async () => {
     updateDate();
     displaySearchHistory();
     
@@ -39,9 +38,24 @@ document.addEventListener('DOMContentLoaded', () => {
     celsiusBtn.addEventListener('click', () => switchUnit('metric'));
     fahrenheitBtn.addEventListener('click', () => switchUnit('imperial'));
 
+    // Test server connection
+    await testServerConnection();
+    
     // Load weather for default city
     getWeatherByCity('London');
 });
+
+// Test server connection
+async function testServerConnection() {
+    try {
+        const response = await fetch(`${SERVER_URL}/health`);
+        if (!response.ok) throw new Error('Server not responding');
+        console.log('✅ Server connection successful');
+    } catch (error) {
+        console.error('❌ Server connection failed:', error);
+        showError('Server connection failed. Please make sure the server is running.');
+    }
+}
 
 // Update current date
 function updateDate() {
@@ -80,7 +94,7 @@ function switchUnit(unit) {
     }
 }
 
-// Get weather by city name
+// Get weather by city name using our server
 async function getWeatherByCity(city) {
     showLoading();
     hideError();
@@ -89,31 +103,23 @@ async function getWeatherByCity(city) {
     try {
         console.log(`Fetching weather for: ${city}`);
         
-        // Get current weather
+        // Fetch current weather from our server
         const currentWeatherResponse = await fetch(
-            `${BASE_URL}/weather?q=${encodeURIComponent(city)}&units=${currentUnit}&appid=${API_KEY}`
+            `${SERVER_URL}/weather/current?city=${encodeURIComponent(city)}&units=${currentUnit}`
         );
         
         console.log('Response status:', currentWeatherResponse.status);
         
         if (!currentWeatherResponse.ok) {
             const errorData = await currentWeatherResponse.json();
-            console.error('API Error:', errorData);
-            
-            if (currentWeatherResponse.status === 401) {
-                throw new Error('Invalid API Key. Please check your API key.');
-            } else if (currentWeatherResponse.status === 404) {
-                throw new Error(`City "${city}" not found. Try a different spelling or larger city.`);
-            } else {
-                throw new Error(`API Error: ${errorData.message || 'Unknown error'}`);
-            }
+            throw new Error(errorData.error || 'Failed to fetch weather data');
         }
         
         const currentWeatherData = await currentWeatherResponse.json();
         
-        // Get forecast
+        // Fetch forecast from our server
         const forecastResponse = await fetch(
-            `${BASE_URL}/forecast?q=${encodeURIComponent(city)}&units=${currentUnit}&appid=${API_KEY}`
+            `${SERVER_URL}/weather/forecast?city=${encodeURIComponent(city)}&units=${currentUnit}`
         );
         
         if (!forecastResponse.ok) {
@@ -133,6 +139,41 @@ async function getWeatherByCity(city) {
         hideLoading();
         showError(error.message);
         showDebugInfo(error);
+    }
+}
+
+// Get weather by coordinates (for geolocation feature)
+async function getWeatherByCoordinates(lat, lon) {
+    showLoading();
+    hideError();
+    
+    try {
+        const response = await fetch(
+            `${SERVER_URL}/weather/coordinates?lat=${lat}&lon=${lon}&units=${currentUnit}`
+        );
+        
+        if (!response.ok) {
+            const errorData = await response.json();
+            throw new Error(errorData.error || 'Failed to fetch weather data');
+        }
+        
+        const data = await response.json();
+        
+        // Fetch forecast as well
+        const forecastResponse = await fetch(
+            `${SERVER_URL}/weather/forecast?city=${encodeURIComponent(data.name)}&units=${currentUnit}`
+        );
+        
+        const forecastData = await forecastResponse.ok ? await forecastResponse.json() : null;
+        
+        updateWeatherDisplay(data, forecastData);
+        addToSearchHistory(data.name);
+        hideLoading();
+        
+    } catch (error) {
+        console.error('Error fetching weather by coordinates:', error);
+        hideLoading();
+        showError(error.message);
     }
 }
 
@@ -184,7 +225,6 @@ function updateWeatherDisplay(currentData, forecastData) {
 
 // Generate forecast HTML
 function generateForecastHTML(forecastData) {
-    // Get one forecast per day (every 24 hours)
     const dailyForecasts = [];
     for (let i = 0; i < forecastData.list.length; i += 8) {
         dailyForecasts.push(forecastData.list[i]);
@@ -259,21 +299,14 @@ function updateBackground(weatherCondition) {
 
 // Add city to search history
 function addToSearchHistory(city) {
-    // Remove if already exists
     searchHistory = searchHistory.filter(item => item.toLowerCase() !== city.toLowerCase());
-    
-    // Add to beginning of array
     searchHistory.unshift(city);
     
-    // Keep only last 5 searches
     if (searchHistory.length > 5) {
         searchHistory.pop();
     }
     
-    // Save to localStorage
     localStorage.setItem('weatherSearchHistory', JSON.stringify(searchHistory));
-    
-    // Update display
     displaySearchHistory();
 }
 
@@ -315,7 +348,7 @@ function showDebugInfo(error) {
     debugInfo.innerHTML = `
         <strong>Debug Information:</strong><br>
         Error: ${error.message}<br>
-        API Key: ${API_KEY ? 'Present' : 'Missing'}<br>
+        Server: ${SERVER_URL}<br>
         Time: ${new Date().toLocaleString()}<br>
         <small>Check browser console for more details</small>
     `;
@@ -324,4 +357,23 @@ function showDebugInfo(error) {
 
 function hideDebugInfo() {
     debugInfo.style.display = 'none';
+}
+
+// Geolocation function (optional feature)
+function getLocationWeather() {
+    if (!navigator.geolocation) {
+        showError('Geolocation is not supported by your browser');
+        return;
+    }
+    
+    navigator.geolocation.getCurrentPosition(
+        (position) => {
+            const { latitude, longitude } = position.coords;
+            getWeatherByCoordinates(latitude, longitude);
+        },
+        (error) => {
+            showError('Unable to retrieve your location');
+            console.error('Geolocation error:', error);
+        }
+    );
 }
