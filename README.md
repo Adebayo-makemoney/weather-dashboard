@@ -41,10 +41,8 @@ This project demonstrates strong knowledge of **HTML5**, **CSS3**, and **JavaScr
 
 ## 🖼️ Preview Screenshot
 
-> *(Add a screenshot named `preview.png` in your repo and update the path below)*  
-
 <p align="center">
-  <img src="./images/preview.png" alt="Landing Page Preview" width="500px" />
+  <img src="./Screenshot.jpeg" alt="Landing Page Preview" width="500px" />
 </p>
 
 ---
@@ -74,12 +72,9 @@ That’s it — no setup required!
 product-landing-page/
 │
 ├── index.html
-├── css/
-│   └── style.css
-├── js/
-│   └── script.js
-├── images/
-│   └── (images used on the page)
+├── style.css
+├── script.js
+├── Screenshot.jpeg
 └── README.md
 ```
 
@@ -122,7 +117,7 @@ To contribute:
   <a href="https://github.com/Adebayo-makemoney">
     <img src="https://img.shields.io/badge/GitHub-Adebayo--makemoney-black?logo=github&style=for-the-badge" />
   </a>
-  <a href="mailto:youremail@example.com">
+  <a href="mailto:aoluwafisayomi2022@gmail.com">
     <img src="https://img.shields.io/badge/Email-Contact%20Me-blue?logo=gmail&style=for-the-badge" />
   </a>
   <a href="https://adebayo-makemoney.github.io/portfolio-website/">
