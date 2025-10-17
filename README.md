@@ -1,131 +1,173 @@
-<h1 align="center">🛍️ Product Landing Page</h1>
+<h1 align="center">🌦️ Weather Dashboard</h1>
 
 <p align="center">
-  <a href="https://adebayo-makemoney.github.io/product-landing-page/"><strong>🌐 Live Demo</strong></a> •
-  <a href="https://github.com/Adebayo-makemoney"><strong>👨‍💻 My GitHub</strong></a>
+  <a href="https://adebayo-makemoney.github.io/weather-dashboard/"><strong>🌍 Live Demo</strong></a> •
+  <a href="https://github.com/Adebayo-makemoney/weather-dashboard"><strong>📂 GitHub Repo</strong></a>
 </p>
 
 ---
 
 ## 🧭 About the Project
 
-The **Product Landing Page** is a fully responsive and modern webpage that highlights a single product or service.  
-It focuses on **clean UI/UX**, effective **call-to-action (CTA)** design, and mobile-friendly layout to improve conversions.
-
-This project demonstrates strong knowledge of **HTML5**, **CSS3**, and **JavaScript** in creating professional, market-ready landing pages.
+The **Weather Dashboard** is a sleek and responsive web app that displays **current weather conditions** and a **5-day forecast** for any city worldwide using the **OpenWeatherMap API**.  
+It’s designed for clarity, accessibility, and real-time weather updates.
 
 ---
 
 ## 🛠️ Built With
 
 <p align="center">
-  <img src="https://skillicons.dev/icons?i=html,css,javascript,git,github" alt="Tech Stack" />
+  <img src="https://skillicons.dev/icons?i=html,css,javascript,api,github" />
 </p>
 
-- **HTML5** — structure and content layout  
-- **CSS3** — responsive design, animations, and modern visuals  
-- **JavaScript (ES6)** — interactivity and smooth scrolling  
-- **Git & GitHub Pages** — version control and deployment  
+- **HTML5** – Semantic structure and accessibility  
+- **CSS3** – Responsive design with Flexbox and Grid  
+- **JavaScript (ES6+)** – Async/await, Fetch API, DOM manipulation  
+- **OpenWeatherMap API** – Real-time weather data  
+- **Font Awesome** – Beautiful icons for UI elements  
 
 ---
 
 ## ✨ Features
 
-✅ Clean and professional design  
+✅ Current weather: temperature, humidity, wind, and icons  
+✅ 5-day forecast with clear layout  
+✅ City search with real-time results  
+✅ Persistent search history (Local Storage)  
+✅ Dynamic background based on weather condition  
+✅ Celsius/Fahrenheit toggle  
 ✅ Fully responsive for all devices  
-✅ Interactive buttons and animations  
-✅ Smooth scroll and hover effects  
-✅ Optimized for performance and accessibility  
 
 ---
 
-## 🖼️ Preview Screenshot
+## 🚀 Live Demo
+
+🌐 [**Try it here**](https://adebayo-makemoney.github.io/weather-dashboard/)  
+Example cities: **London**, **New York**, **Tokyo**, **Paris**, **Sydney**
+
+---
+
+## 🖼️ Screenshot
 
 <p align="center">
-  <img src="./Screenshot.jpeg" alt="Landing Page Preview" />
+  <img src="./Screenshot.jpeg" alt="Weather Dashboard Screenshot" />
 </p>
 
 ---
 
-## 🚀 Getting Started
+## ⚙️ Installation
 
-To preview this project locally:
+### Option 1 — Direct Download
+1. Download all files (`index.html`, `styles.css`, `script.js`)
+2. Open `index.html` in your browser
 
+### Option 2 — Clone Repository
 ```bash
-# Clone the repository
-git clone https://github.com/Adebayo-makemoney/product-landing-page.git
-
-# Go into the folder
-cd product-landing-page
-
-# Open the HTML file
+git clone https://github.com/Adebayo-makemoney/weather-dashboard.git
+cd weather-dashboard
 start index.html
 ```
-
-That’s it — no setup required!
 
 ---
 
 ## 📁 Folder Structure
 
 ```
-product-landing-page/
+weather-dashboard/
 │
-├── index.html
-├── style.css
-├── script.js
-├── Screenshot.jpeg
-└── README.md
+├── index.html          # Main HTML file
+├── styles.css          # Styling and responsiveness
+├── script.js           # JavaScript and API logic
+└── README.md           # Documentation
 ```
 
 ---
 
-## 💡 Future Improvements
+## 🔑 API Configuration
 
-- Add product carousel or slider 🎠  
-- Implement contact form with validation 📩  
-- Improve SEO optimization for better reach 🔍  
-- Integrate newsletter signup feature 📰  
+This project uses the **OpenWeatherMap API**.
+
+1. Sign up at [OpenWeatherMap](https://openweathermap.org/api)
+2. Get your **API key**
+3. Replace the placeholder key in `script.js`:
+
+```javascript
+const API_KEY = 'create_yours_at_www.home.openweathermap.org';
+```
 
 ---
 
-## 📊 GitHub Stats
+## 💡 Usage
 
-<p align="center">
-  <img src="https://github-readme-stats.vercel.app/api?username=Adebayo-makemoney&show_icons=true&theme=tokyonight" width="48%"/>
-  <img src="https://streak-stats.demolab.com?user=Adebayo-makemoney&theme=tokyonight" width="48%"/>
-</p>
+1. Enter a city name and click **Search**  
+2. Switch temperature units (**°C / °F**)  
+3. View the **5-day forecast** below  
+4. Click previously searched cities to reload instantly  
+
+---
+
+## 🔍 API Endpoints Used
+
+- **Current Weather:** `https://api.openweathermap.org/data/2.5/weather`
+- **5-Day Forecast:** `https://api.openweathermap.org/data/2.5/forecast`
+
+---
+
+## 🧠 Future Enhancements
+
+- 🌍 Add geolocation for automatic weather detection  
+- ⚠️ Include weather alerts and notifications  
+- 🗺️ Integrate radar and map views  
+- 🕓 Add local time and date display  
+
+---
+
+## 🧩 Troubleshooting
+
+### 🔸 City Not Found
+- Check spelling or use English city names
+
+### 🔸 API Key Issues
+- Wait 10–20 minutes after generating key  
+- Ensure your email is verified on OpenWeatherMap
+
+### 🔸 No Weather Data
+- Check internet connection  
+- Verify API URLs and key  
+- Inspect the browser console for errors  
 
 ---
 
 ## 🤝 Contributing
 
-Contributions are welcome!  
-To contribute:
-
-1. **Fork** the repository  
-2. **Create a feature branch:** `git checkout -b feature-name`  
-3. **Commit changes:** `git commit -m "Add new feature"`  
-4. **Push:** `git push origin feature-name`  
-5. **Open a Pull Request**
+1. Fork the repository  
+2. Create a branch: `git checkout -b feature/AmazingFeature`  
+3. Commit your changes: `git commit -m 'Add some AmazingFeature'`  
+4. Push: `git push origin feature/AmazingFeature`  
+5. Open a Pull Request  
 
 ---
 
-## 📬 Contact
+## 🧾 License
 
-<p align="center">
-  <a href="https://github.com/Adebayo-makemoney">
-    <img src="https://img.shields.io/badge/GitHub-Adebayo--makemoney-black?logo=github&style=for-the-badge" />
-  </a>
-  <a href="mailto:aoluwafisayomi2022@gmail.com">
-    <img src="https://img.shields.io/badge/Email-Contact%20Me-blue?logo=gmail&style=for-the-badge" />
-  </a>
-  <a href="https://adebayo-makemoney.github.io/portfolio-website/">
-    <img src="https://img.shields.io/badge/Portfolio-Visit%20Now-green?logo=vercel&style=for-the-badge" />
-  </a>
-</p>
+This project is licensed under the **MIT License** — see the `LICENSE` file for details.
 
 ---
 
-⭐ **If you like this project, give it a star on GitHub!**  
-Made with ❤️ by [**Adebayo-makemoney**](https://github.com/Adebayo-makemoney)
+## 🙏 Acknowledgments
+
+- [OpenWeatherMap](https://openweathermap.org/) — API Provider  
+- [Font Awesome](https://fontawesome.com/) — Icons  
+- Inspiration from modern, user-friendly weather dashboards  
+
+---
+
+## 📬 Support
+
+Having issues?  
+- Visit the [OpenWeatherMap FAQ](https://openweathermap.org/faq)  
+- Open an issue on [GitHub](https://github.com/Adebayo-makemoney/weather-dashboard/issues)  
+
+---
+
+⭐ **If you like this project, please give it a star!**
