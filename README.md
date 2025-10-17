@@ -42,7 +42,7 @@ This project demonstrates strong knowledge of **HTML5**, **CSS3**, and **JavaScr
 ## 🖼️ Preview Screenshot
 
 <p align="center">
-  <img src="./Screenshot.jpeg" alt="Landing Page Preview" width="500px" />
+  <img src="./Screenshot.jpeg" alt="Landing Page Preview" />
 </p>
 
 ---
