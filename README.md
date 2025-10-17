@@ -1,173 +1,203 @@
-<h1 align="center">🌦️ Weather Dashboard</h1>
+# Weather Dashboard 🌤️
 
-<p align="center">
-  <a href="https://adebayo-makemoney.github.io/weather-dashboard/"><strong>🌍 Live Demo</strong></a> •
-  <a href="https://github.com/Adebayo-makemoney/weather-dashboard"><strong>📂 GitHub Repo</strong></a>
-</p>
+![JavaScript](https://img.shields.io/badge/JavaScript-ES6+-yellow)
+![Node.js](https://img.shields.io/badge/Node.js-Express-green)
+![OpenWeatherMap](https://img.shields.io/badge/API-OpenWeatherMap-blue)
+![License](https://img.shields.io/badge/License-MIT-lightgrey)
 
----
-
-## 🧭 About the Project
-
-The **Weather Dashboard** is a sleek and responsive web app that displays **current weather conditions** and a **5-day forecast** for any city worldwide using the **OpenWeatherMap API**.  
-It’s designed for clarity, accessibility, and real-time weather updates.
+A beautiful, responsive weather dashboard with **server-side API protection**.
 
 ---
 
-## 🛠️ Built With
+## 🚀 Features
 
-<p align="center">
-  <img src="https://skillicons.dev/icons?i=html,css,javascript,api,github" />
-</p>
-
-- **HTML5** – Semantic structure and accessibility  
-- **CSS3** – Responsive design with Flexbox and Grid  
-- **JavaScript (ES6+)** – Async/await, Fetch API, DOM manipulation  
-- **OpenWeatherMap API** – Real-time weather data  
-- **Font Awesome** – Beautiful icons for UI elements  
-
----
-
-## ✨ Features
-
-✅ Current weather: temperature, humidity, wind, and icons  
-✅ 5-day forecast with clear layout  
-✅ City search with real-time results  
-✅ Persistent search history (Local Storage)  
-✅ Dynamic background based on weather condition  
-✅ Celsius/Fahrenheit toggle  
-✅ Fully responsive for all devices  
+- 🌡️ **Current weather conditions**
+- 📅 **5-day weather forecast**
+- 🌍 **Global city search**
+- 🔄 **Celsius/Fahrenheit toggle**
+- 📱 **Fully responsive design**
+- 🔒 **Server-side API key protection**
+- ⚡ **Rate limiting**
+- 📚 **Search history**
 
 ---
 
-## 🚀 Live Demo
+## 🧩 Tech Stack
 
-🌐 [**Try it here**](https://adebayo-makemoney.github.io/weather-dashboard/)  
-Example cities: **London**, **New York**, **Tokyo**, **Paris**, **Sydney**
+**Frontend:**
+- HTML5, CSS3, JavaScript (ES6+)
+- Font Awesome icons
+- Responsive design
+
+**Backend:**
+- Node.js + Express.js
+- Environment variables
+- Rate limiting
+- CORS protection
 
 ---
 
-## 🖼️ Screenshot
+## 🗂️ Project Structure
 
-<p align="center">
-  <img src="./Screenshot.jpeg" alt="Weather Dashboard Screenshot" />
-</p>
-
----
-
-## ⚙️ Installation
-
-### Option 1 — Direct Download
-1. Download all files (`index.html`, `styles.css`, `script.js`)
-2. Open `index.html` in your browser
-
-### Option 2 — Clone Repository
 ```bash
-git clone https://github.com/Adebayo-makemoney/weather-dashboard.git
-cd weather-dashboard
-start index.html
-```
-
----
-
-## 📁 Folder Structure
-
-```
 weather-dashboard/
-│
-├── index.html          # Main HTML file
-├── styles.css          # Styling and responsiveness
-├── script.js           # JavaScript and API logic
-└── README.md           # Documentation
+├── client/
+│   ├── index.html
+│   ├── styles.css
+│   └── script.js
+├── server/
+│   ├── server.js
+│   ├── package.json
+│   ├── .env.example
+│   └── .gitignore
+└── README.md
 ```
 
 ---
 
-## 🔑 API Configuration
+## ⚙️ Setup Instructions
 
-This project uses the **OpenWeatherMap API**.
+### Prerequisites
 
-1. Sign up at [OpenWeatherMap](https://openweathermap.org/api)
-2. Get your **API key**
-3. Replace the placeholder key in `script.js`:
+- Node.js (v14 or higher)
+- OpenWeatherMap API key
 
-```javascript
-const API_KEY = 'create_yours_at_www.home.openweathermap.org';
+### Installation
+
+1. **Clone the repository**
+   ```bash
+   git clone https://github.com/your-username/weather-dashboard.git
+   cd weather-dashboard
+   ```
+
+2. **Setup the server**
+   ```bash
+   cd server
+   npm install
+   ```
+
+3. **Configure environment variables**
+   ```bash
+   cp .env.example .env
+   # Edit .env with your API key
+   ```
+
+4. **Start the server**
+   ```bash
+   npm run dev
+   ```
+
+5. **Access the application**
+   Open [http://localhost:3000](http://localhost:3000) in your browser.
+
+---
+
+## 🔑 Environment Variables
+
+Create a `server/.env` file with the following:
+
+```env
+PORT=3000
+OPENWEATHER_API_KEY=your_api_key_here
+NODE_ENV=development
 ```
 
 ---
 
-## 💡 Usage
+## 🌐 API Endpoints
 
-1. Enter a city name and click **Search**  
-2. Switch temperature units (**°C / °F**)  
-3. View the **5-day forecast** below  
-4. Click previously searched cities to reload instantly  
-
----
-
-## 🔍 API Endpoints Used
-
-- **Current Weather:** `https://api.openweathermap.org/data/2.5/weather`
-- **5-Day Forecast:** `https://api.openweathermap.org/data/2.5/forecast`
+| Method | Endpoint | Description |
+|--------|-----------|-------------|
+| GET | `/api/health` | Health check |
+| GET | `/api/weather/current?city=London` | Current weather |
+| GET | `/api/weather/forecast?city=London` | 5-day forecast |
+| GET | `/api/weather/coordinates?lat=51.5074&lon=0.1278` | Weather by coordinates |
 
 ---
 
-## 🧠 Future Enhancements
+## 🛡️ Security Features
 
-- 🌍 Add geolocation for automatic weather detection  
-- ⚠️ Include weather alerts and notifications  
-- 🗺️ Integrate radar and map views  
-- 🕓 Add local time and date display  
-
----
-
-## 🧩 Troubleshooting
-
-### 🔸 City Not Found
-- Check spelling or use English city names
-
-### 🔸 API Key Issues
-- Wait 10–20 minutes after generating key  
-- Ensure your email is verified on OpenWeatherMap
-
-### 🔸 No Weather Data
-- Check internet connection  
-- Verify API URLs and key  
-- Inspect the browser console for errors  
+✅ API key protection (server-side only)  
+✅ Rate limiting (60 requests/minute)  
+✅ Input validation  
+✅ CORS configuration  
+✅ Error handling without sensitive data exposure  
 
 ---
 
 ## 🤝 Contributing
 
-1. Fork the repository  
-2. Create a branch: `git checkout -b feature/AmazingFeature`  
-3. Commit your changes: `git commit -m 'Add some AmazingFeature'`  
-4. Push: `git push origin feature/AmazingFeature`  
-5. Open a Pull Request  
+1. Fork the project  
+2. Create your feature branch  
+   ```bash
+   git checkout -b feature/AmazingFeature
+   ```
+3. Commit your changes  
+   ```bash
+   git commit -m "Add some AmazingFeature"
+   ```
+4. Push to the branch  
+   ```bash
+   git push origin feature/AmazingFeature
+   ```
+5. Open a Pull Request
 
 ---
 
-## 🧾 License
+## 📄 License
 
-This project is licensed under the **MIT License** — see the `LICENSE` file for details.
+This project is licensed under the **MIT License** — see the [LICENSE](LICENSE) file for details.
 
 ---
 
 ## 🙏 Acknowledgments
 
-- [OpenWeatherMap](https://openweathermap.org/) — API Provider  
-- [Font Awesome](https://fontawesome.com/) — Icons  
-- Inspiration from modern, user-friendly weather dashboards  
+- [OpenWeatherMap](https://openweathermap.org/api) — for weather data API  
+- [Font Awesome](https://fontawesome.com/) — for icons
 
 ---
 
-## 📬 Support
+## 🧰 .env.example Template
 
-Having issues?  
-- Visit the [OpenWeatherMap FAQ](https://openweathermap.org/faq)  
-- Open an issue on [GitHub](https://github.com/Adebayo-makemoney/weather-dashboard/issues)  
+```env
+# Server Configuration
+PORT=3000
+
+# OpenWeatherMap API Key
+# Get your free API key from: https://openweathermap.org/api
+OPENWEATHER_API_KEY=your_api_key_here
+
+# Environment
+NODE_ENV=development
+```
 
 ---
 
-⭐ **If you like this project, please give it a star!**
+## 🪄 Git Setup & Push Instructions
+
+```bash
+# Stage and commit files
+git add .
+git commit -m "Initial commit: Weather dashboard with server-side API protection"
+
+# Add your GitHub remote (if not set)
+git remote add origin https://github.com/YOUR_USERNAME/weather-dashboard.git
+
+# Push to GitHub
+git branch -M main
+git push -u origin main
+```
+
+---
+
+✅ **Safe to push:**  
+- `server/.env.example`  
+- `server/package.json`  
+- All client files  
+- `README.md`  
+- `.gitignore`  
+
+❌ **Never push:**  
+- `server/.env` (with real API key)  
+- `server/node_modules/`  
+- Any file with actual API keys  
