@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Weather Dashboard</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Weather Dashboard</h1>
+            <p class="subtitle">Get accurate weather forecasts for any location</p>
+        </header>
+
+        <div class="search-container">
+            <div class="search-box">
+                <input type="text" id="city-input" placeholder="Enter city name (e.g., London, New York, Tokyo)">
+                <button id="search-btn"><i class="fas fa-search"></i></button>
+            </div>
+        </div>
+
+        <div class="demo-cities">
+            <div class="demo-city" data-city="London">London</div>
+            <div class="demo-city" data-city="New York">New York</div>
+            <div class="demo-city" data-city="Tokyo">Tokyo</div>
+            <div class="demo-city" data-city="Paris">Paris</div>
+            <div class="demo-city" data-city="Sydney">Sydney</div>
+        </div>
+
+        <div class="unit-toggle">
+            <div class="toggle-btn active" id="celsius-btn">°C</div>
+            <div class="toggle-btn" id="fahrenheit-btn">°F</div>
+        </div>
+
+        <div id="weather-content">
+            <!-- Weather content will be loaded here -->
+        </div>
+
+        <div class="loading" id="loading" style="display: none;">
+            <i class="fas fa-spinner fa-spin"></i> Loading weather data...
+        </div>
+
+        <div class="error" id="error-message" style="display: none;">
+            City not found. Please try again.
+        </div>
+
+        <div class="history">
+            <h3>Recent Searches</h3>
+            <div class="history-list" id="history-list">
+                <!-- Search history will be inserted here -->
+            </div>
+        </div>
+
+        <div class="debug-info" id="debug-info" style="display: none;">
+            <!-- Debug information will be shown here -->
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
