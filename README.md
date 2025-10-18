@@ -82,8 +82,12 @@ weather-dashboard/
    # Edit .env with your API key
    ```
 
-4. **Start the server**
+4. **Start the server ensuring that you are hosting it on the server file path**
+
+   e.g cd C:\Users\REX\Desktop\weather-dashboard\server
+
    ```bash
+   cd C:\your_server_file_path
    npm run dev
    ```
 
